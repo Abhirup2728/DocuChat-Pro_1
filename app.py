@@ -31,6 +31,52 @@ llm, embeddings = load_llm_and_embeddings()
 
 # 3. Streamlit Web User Interface Styling
 st.set_page_config(page_title="DocuChat Pro", page_icon="📖", layout="wide")
+# 3. Streamlit Web User Interface Styling
+st.set_page_config(page_title="DocuChat Pro", page_icon="🌌", layout="wide")
+
+# --- UI DECORATION: CUSTOM CSS ---
+st.markdown("""
+<style>
+    /* Add a modern gradient background to the main app */
+    .stApp {
+        background: linear-gradient(to right bottom, #f1f5f9, #e2e8f0);
+    }
+    
+    /* Make the main title stand out with color and a shadow */
+    h1 {
+        color: #1e3a8a !important;
+        font-family: 'Trebuchet MS', sans-serif;
+        text-align: center;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        padding-bottom: 20px;
+    }
+    
+    /* Style the file uploader box to look softer and more clickable */
+    [data-testid="stFileUploadDropzone"] {
+        background-color: #ffffff;
+        border: 2px dashed #3b82f6;
+        border-radius: 15px;
+        padding: 20px;
+    }
+    
+    /* Style the success and info alert messages */
+    [data-testid="stAlert"] {
+        border-radius: 10px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Create a polished card look for the AI's response */
+    .response-card {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-left: 6px solid #3b82f6;
+        margin-top: 20px;
+        color: #333333;
+    }
+</style>
+""", unsafe_allow_html=True)
 st.title("📖 DocuChat Pro: Multi-PDF RAG Chatbot")
 st.markdown("Upload any document and have a context-grounded conversation with it instantly.")
 
