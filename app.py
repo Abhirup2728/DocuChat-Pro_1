@@ -35,45 +35,80 @@ llm, embeddings = load_llm_and_embeddings()
 st.set_page_config(page_title="DocuChat Pro", page_icon="🌌", layout="wide")
 
 # --- UI DECORATION: CUSTOM CSS ---
+# 3. Streamlit Web User Interface Styling
+st.set_page_config(page_title="DocuChat Pro", page_icon="✨", layout="wide")
+
+# --- UI DECORATION: PREMIUM GLASSMORPHISM CSS ---
 st.markdown("""
 <style>
-    /* Add a modern gradient background to the main app */
-    .stApp {
-        background: linear-gradient(to right bottom, #f1f5f9, #e2e8f0);
-    }
-    
-    /* Make the main title stand out with color and a shadow */
-    h1 {
-        color: #1e3a8a !important;
-        font-family: 'Trebuchet MS', sans-serif;
-        text-align: center;
-        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
-        padding-bottom: 20px;
-    }
-    
-    /* Style the file uploader box to look softer and more clickable */
-    [data-testid="stFileUploadDropzone"] {
-        background-color: #ffffff;
-        border: 2px dashed #3b82f6;
-        border-radius: 15px;
-        padding: 20px;
-    }
-    
-    /* Style the success and info alert messages */
-    [data-testid="stAlert"] {
-        border-radius: 10px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    /* Import Google Font 'Poppins' for a sleek, modern look */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
+    /* Apply the font globally */
+    html, body, [class*="css"] {
+        font-family: 'Poppins', sans-serif !important;
     }
 
-    /* Create a polished card look for the AI's response */
+    /* Create a vibrant, animated gradient background */
+    .stApp {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    /* Apply a 'Frosted Glass' effect to the main content area */
+    .block-container {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(15px);
+        border-radius: 25px;
+        padding: 3rem !important;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    /* Style the main title with a sleek text gradient */
+    h1 {
+        font-weight: 800 !important;
+        text-align: center;
+        background: -webkit-linear-gradient(#e73c7e, #23a6d5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Soften and modernize the file uploader */
+    [data-testid="stFileUploadDropzone"] {
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 2px dashed #e73c7e;
+        border-radius: 20px;
+        padding: 30px;
+        transition: all 0.3s ease;
+    }
+    
+    [data-testid="stFileUploadDropzone"]:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-color: #23a6d5;
+        transform: scale(1.01);
+    }
+
+    /* Premium AI Response Card */
     .response-card {
-        background-color: #ffffff;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        border-left: 6px solid #3b82f6;
-        margin-top: 20px;
-        color: #333333;
+        background: #ffffff;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+        border-left: 8px solid #23a6d5;
+        margin-top: 25px;
+        color: #2b2b2b;
+        font-size: 1.1rem;
+        line-height: 1.7;
     }
 </style>
 """, unsafe_allow_html=True)
