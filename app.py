@@ -1,4 +1,14 @@
-# Cell 7: Complete Production Code for DocuChat Pro
+import sys
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+# -------------------------------------------------
+
+import os
+import fitz  # PyMuPDF
+# ... (the rest of your original imports)
 import os
 import fitz  # PyMuPDF
 import streamlit as str_layout # We use this alias internally for layout management
