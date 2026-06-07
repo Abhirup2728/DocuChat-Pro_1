@@ -41,70 +41,98 @@ st.set_page_config(page_title="DocuChat Pro", page_icon="✨", layout="wide")
 st.set_page_config(page_title="DocuChat Pro", page_icon="📘", layout="centered") # Changed layout to 'centered' for a cleaner document feel
 
 # --- UI DECORATION: PREMIUM MINIMALIST SaaS CSS ---
+# --- Production Deployment (GitHub & Streamlit Cloud) ---
+# Cell 12: Complete, Secure, and Aesthetic RAG Application (DocuChat Pro)
+
+# 1. Imports and Security: Set up core AI and Web logic once. We are deploying for real now.
+import os
+import streamlit as st
+import base64 # to handle file data
+import fitz # for PDF text extraction (PyMuPDF)
+from langchain_groq import ChatGroq
+from langchain_chroma import Chroma
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_core.messages import SystemMessage, HumanMessage
+
+# --- PRODUCTION ENVIRONMENT CONFIGURATION ---
+# LangChain, ChromaDB, and Streamlit Community Cloud have specific dependency/OS issues. We fix them once here.
+# Chromium (used by ChromaDB) requires specific background libraries on Streamlit Cloud.
+# Protobuf version must be strict (v3), otherwise ChromaDB crashes.
+os.environ["LC_ALL"] = "en_US.UTF-8"
+os.environ["LANG"] = "en_US.UTF-8"
+os.environ["PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION"] = "python"
+# ---------------------------------------------
+
+# --- PRODUCTION API KEY SECURITY ---
+# DO NOT hardcode your API key anymore. It touched a local file and was nearly compromised.
+# After rotating your key at console.groq.com, we will paste it securely into the Streamlit deployment settings.
+# For now, your app will look for the secret 'GROQ_API_KEY' in its secure environment variable storage.
+GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+# ------------------------------------
+
+# --- AESTHETIC DECORATION: PREMIUM SaaS MINIMALISM CSS ---
+# We are creating a sophisticated enterprise aesthetic: Clean background, premium fonts, refined cards.
+st.set_page_config(page_title="DocuChat Pro", page_icon="📘", layout="centered")
+
 st.markdown("""
 <style>
-    /* Import 'Inter' font for a clean, professional SaaS look */
+    /* Import 'Inter' font: The standard for premium web products */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-    /* Apply global typography and text colors */
+    /* Define text color, size, and globally apply the 'Inter' font */
     html, body, [class*="css"] {
         font-family: 'Inter', sans-serif !important;
-        color: #1e293b; /* Deep slate gray for ultimate readability */
+        color: #1e293b; /* Sophisticated slate gray */
     }
 
-    /* Calm, static, light-gray background */
+    /* Calm, static off-white background */
     .stApp {
         background-color: #f8fafc;
     }
 
-    /* Main content container spacing */
-    .block-container {
-        padding-top: 3rem !important;
-        padding-bottom: 3rem !important;
+    /* Minimalist File Uploader container */
+    [data-testid="stFileUploadDropzone"] {
+        background-color: #ffffff;
+        border: 1px dashed #cbd5e1;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    /* Soft blue accent on hover */
+    [data-testid="stFileUploadDropzone"]:hover {
+        border-color: #3b82f6;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
-    /* Sleek, professional header */
+    /* Polished, minimalist title styling */
     h1 {
         font-weight: 700 !important;
         color: #0f172a !important;
         letter-spacing: -0.025em;
         margin-bottom: 0.5rem;
     }
-    
-    /* Subtitle styling */
+
+    /* Clean Subtitle styling */
     p {
         color: #475569;
         font-size: 1.05rem;
     }
 
-    /* Minimalist File Uploader */
-    [data-testid="stFileUploadDropzone"] {
-        background-color: #ffffff;
-        border: 1px dashed #cbd5e1;
-        border-radius: 12px;
-        padding: 30px;
-        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    
-    /* Subtle hover effect for the uploader */
-    [data-testid="stFileUploadDropzone"]:hover {
-        border-color: #3b82f6; /* Professional blue accent */
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    /* Enterprise-grade AI Response Card */
+    /* Production Response Card: Minimalist and highly readable */
     .response-card {
         background-color: #ffffff;
         border: 1px solid #e2e8f0;
         border-radius: 12px;
         padding: 24px 32px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         margin-top: 24px;
         color: #1e293b;
         font-size: 1rem;
         line-height: 1.7;
-        border-top: 4px solid #3b82f6; /* Sleek blue accent bar at the top */
+        border-top: 4px solid #3b82f6; /* Subtle blue top accent bar */
     }
 </style>
 """, unsafe_allow_html=True)
@@ -165,12 +193,12 @@ CONTEXT FROM UPLOADED PDF:
             
             # Execute inference
             # Execute inference
+            # Generate response from the secure Groq LLM (initialized from st.secrets)
             response = llm.invoke(messages)
             
-            # Render output using the custom CSS 'response-card'
+            # Formatted Output Section using HTML and the 'response-card' CSS class
             st.markdown("### 🤖 DocuChat Pro Response:")
             
-            # We wrap the response in a styled HTML div
             html_response = f"""
             <div class="response-card">
                 {response.content}
