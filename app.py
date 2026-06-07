@@ -30,7 +30,7 @@ def load_llm_and_embeddings():
 llm, embeddings = load_llm_and_embeddings()
 
 # 3. Streamlit Web User Interface Styling
-st.set_page_config(page_title="DocuChat Pro", page_icon="📖", layout="wide")
+#st.set_page_config(page_title="DocuChat Pro", page_icon="📖", layout="wide")
 # 3. Streamlit Web User Interface Styling
 st.set_page_config(page_title="DocuChat Pro", page_icon="🌌", layout="wide")
 
