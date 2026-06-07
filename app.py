@@ -131,8 +131,16 @@ CONTEXT FROM UPLOADED PDF:
             ]
             
             # Execute inference
+            # Execute inference
             response = llm.invoke(messages)
             
-            # Render output
+            # Render output using the custom CSS 'response-card'
             st.markdown("### 🤖 DocuChat Pro Response:")
-            st.write(response.content)
+            
+            # We wrap the response in a styled HTML div
+            html_response = f"""
+            <div class="response-card">
+                {response.content}
+            </div>
+            """
+            st.markdown(html_response, unsafe_allow_html=True)
