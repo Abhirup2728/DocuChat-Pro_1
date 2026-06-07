@@ -37,81 +37,79 @@ st.set_page_config(page_title="DocuChat Pro", page_icon="🌌", layout="wide")
 # --- UI DECORATION: CUSTOM CSS ---
 # 3. Streamlit Web User Interface Styling
 st.set_page_config(page_title="DocuChat Pro", page_icon="✨", layout="wide")
+# 3. Streamlit Web User Interface Styling
+st.set_page_config(page_title="DocuChat Pro", page_icon="📘", layout="centered") # Changed layout to 'centered' for a cleaner document feel
 
-# --- UI DECORATION: PREMIUM GLASSMORPHISM CSS ---
+# --- UI DECORATION: PREMIUM MINIMALIST SaaS CSS ---
 st.markdown("""
 <style>
-    /* Import Google Font 'Poppins' for a sleek, modern look */
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+    /* Import 'Inter' font for a clean, professional SaaS look */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-    /* Apply the font globally */
+    /* Apply global typography and text colors */
     html, body, [class*="css"] {
-        font-family: 'Poppins', sans-serif !important;
+        font-family: 'Inter', sans-serif !important;
+        color: #1e293b; /* Deep slate gray for ultimate readability */
     }
 
-    /* Create a vibrant, animated gradient background */
+    /* Calm, static, light-gray background */
     .stApp {
-        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
+        background-color: #f8fafc;
     }
 
-    @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    /* Apply a 'Frosted Glass' effect to the main content area */
+    /* Main content container spacing */
     .block-container {
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(15px);
-        border-radius: 25px;
-        padding: 3rem !important;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
     }
 
-    /* Style the main title with a sleek text gradient */
+    /* Sleek, professional header */
     h1 {
-        font-weight: 800 !important;
-        text-align: center;
-        background: -webkit-linear-gradient(#e73c7e, #23a6d5);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 1.5rem;
-    }
-
-    /* Soften and modernize the file uploader */
-    [data-testid="stFileUploadDropzone"] {
-        background-color: rgba(255, 255, 255, 0.5);
-        border: 2px dashed #e73c7e;
-        border-radius: 20px;
-        padding: 30px;
-        transition: all 0.3s ease;
+        font-weight: 700 !important;
+        color: #0f172a !important;
+        letter-spacing: -0.025em;
+        margin-bottom: 0.5rem;
     }
     
-    [data-testid="stFileUploadDropzone"]:hover {
-        background-color: rgba(255, 255, 255, 0.9);
-        border-color: #23a6d5;
-        transform: scale(1.01);
+    /* Subtitle styling */
+    p {
+        color: #475569;
+        font-size: 1.05rem;
     }
 
-    /* Premium AI Response Card */
-    .response-card {
-        background: #ffffff;
+    /* Minimalist File Uploader */
+    [data-testid="stFileUploadDropzone"] {
+        background-color: #ffffff;
+        border: 1px dashed #cbd5e1;
+        border-radius: 12px;
         padding: 30px;
-        border-radius: 20px;
-        box-shadow: 0 15px 25px rgba(0,0,0,0.05);
-        border-left: 8px solid #23a6d5;
-        margin-top: 25px;
-        color: #2b2b2b;
-        font-size: 1.1rem;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    /* Subtle hover effect for the uploader */
+    [data-testid="stFileUploadDropzone"]:hover {
+        border-color: #3b82f6; /* Professional blue accent */
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Enterprise-grade AI Response Card */
+    .response-card {
+        background-color: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 24px 32px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        margin-top: 24px;
+        color: #1e293b;
+        font-size: 1rem;
         line-height: 1.7;
+        border-top: 4px solid #3b82f6; /* Sleek blue accent bar at the top */
     }
 </style>
 """, unsafe_allow_html=True)
+# --- UI DECORATION: PREMIUM GLASSMORPHISM CSS ---
+
 st.title("📖 DocuChat Pro: Multi-PDF RAG Chatbot")
 st.markdown("Upload any document and have a context-grounded conversation with it instantly.")
 
