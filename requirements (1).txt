@@ -1,0 +1,8 @@
+# Cell 8: Production dependencies configuration
+streamlit
+pymupdf
+langchain-text-splitters
+langchain-huggingface
+langchain-chroma
+langchain-groq
+sentence-transformers
